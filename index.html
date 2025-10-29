@@ -3,128 +3,371 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Juan Fco. Marte Maldonado</title>
+    <title>CV Interactivo - Juan Fco. Marte Maldonado</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #3b82f6;
             --primary-dark: #1d4ed8;
             --secondary: #10b981;
             --accent: #8b5cf6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
         
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: var(--light);
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
         
         .cv-container {
-            max-width: 1000px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            overflow: hidden;
-            animation: fadeIn 1s ease-out;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
         }
         
-        .header-bg {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
         }
         
-        .header-bg::before {
+        .header::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            z-index: -1;
         }
         
-        .section-title {
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            border: 4px solid rgba(255, 255, 255, 0.2);
             position: relative;
-            padding-left: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="circles" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect x="0" y="0" width="100" height="100" fill="url(%23circles)"/></svg>');
+        }
+        
+        .profile-image i {
+            font-size: 5rem;
+            color: white;
+        }
+        
+        .name {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .title {
+            font-size: 1.5rem;
+            color: #cbd5e1;
             margin-bottom: 1.5rem;
         }
         
-        .section-title::before {
+        .contact-info {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .contact-item i {
+            color: var(--primary);
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+        }
+        
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .section {
+            padding: 2rem;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--primary);
+        }
+        
+        .section-title i {
+            font-size: 1.25rem;
+        }
+        
+        .skill-category {
+            margin-bottom: 1.5rem;
+        }
+        
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .skill-level {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+            transition: width 1.5s ease-in-out;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
             content: '';
             position: absolute;
             left: 0;
             top: 0;
-            height: 100%;
-            width: 5px;
+            bottom: 0;
+            width: 2px;
             background: var(--primary);
-            border-radius: 5px;
-            transition: all 0.3s ease;
         }
         
-        .section-title:hover::before {
-            width: 8px;
-            background: var(--accent);
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 2px solid var(--dark);
+        }
+        
+        .timeline-date {
+            font-size: 0.875rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .timeline-subtitle {
+            font-size: 1rem;
+            color: #cbd5e1;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-description {
+            color: #94a3b8;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
         }
         
         .skill-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 50px;
+            text-align: center;
             transition: all 0.3s ease;
             cursor: default;
         }
         
         .skill-tag:hover {
+            background: rgba(59, 130, 246, 0.2);
             transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
         
-        .experience-card {
+        .floating-nav {
+            position: fixed;
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 100;
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
-            border-left: 4px solid var(--primary);
+            cursor: pointer;
+            position: relative;
         }
         
-        .experience-card:hover {
-            transform: translateX(5px);
-            border-left-color: var(--accent);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        .nav-dot.active {
+            background: var(--primary);
+            transform: scale(1.2);
         }
         
-        .reference-card {
+        .nav-dot:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+        
+        .print-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
+            z-index: 100;
         }
         
-        .reference-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .contact-icon {
-            transition: all 0.3s ease;
-        }
-        
-        .contact-icon:hover {
+        .print-btn:hover {
+            background: var(--primary-dark);
             transform: scale(1.1);
-            color: var(--accent);
-        }
-        
-        .floating {
-            animation: floating 3s ease-in-out infinite;
-        }
-        
-        @keyframes floating {
-            0% { transform: translate(0, 0px); }
-            50% { transform: translate(0, 10px); }
-            100% { transform: translate(0, -0px); }
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
         
         .animate-on-scroll {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
         }
         
         .animate-on-scroll.visible {
@@ -132,290 +375,306 @@
             transform: translateY(0);
         }
         
-        .print-button {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 100;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .pulse {
+            animation: pulse 2s infinite;
         }
         
-        .print-button:hover {
-            background: var(--primary-dark);
-            transform: scale(1.1);
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+        
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .floating-nav {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 2rem 1rem;
+            }
+            
+            .name {
+                font-size: 2.5rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media print {
-            .print-button {
+            .floating-nav, .print-btn {
                 display: none;
             }
             
             body {
                 background: white;
+                color: black;
             }
             
-            .cv-container {
+            .glass-card {
+                background: white;
+                border: 1px solid #ddd;
                 box-shadow: none;
-                max-width: 100%;
             }
         }
     </style>
 </head>
-<body class="py-8 px-4">
+<body>
+    <!-- Partículas de fondo -->
+    <div class="particles-container" id="particles-container"></div>
+    
+    <!-- Navegación flotante -->
+    <div class="floating-nav">
+        <div class="nav-dot active" data-tooltip="Inicio" data-section="header"></div>
+        <div class="nav-dot" data-tooltip="Perfil" data-section="profile"></div>
+        <div class="nav-dot" data-tooltip="Experiencia" data-section="experience"></div>
+        <div class="nav-dot" data-tooltip="Habilidades" data-section="skills"></div>
+        <div class="nav-dot" data-tooltip="Formación" data-section="education"></div>
+        <div class="nav-dot" data-tooltip="Referencias" data-section="references"></div>
+    </div>
+    
     <!-- Botón de impresión -->
-    <button class="print-button" onclick="window.print()">
-        <i class="fas fa-print text-xl"></i>
-    </button>
-
-    <div class="cv-container mx-auto bg-white rounded-lg overflow-hidden animate-on-scroll">
-        <!-- Header -->
-        <header class="header-bg text-white p-8 relative">
-            <div class="relative z-10">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
-                    <div class="mb-6 md:mb-0">
-                        <h1 class="text-4xl font-bold mb-2 animate-on-scroll">JUAN FCO. MARTE MALDONADO</h1>
-                        <p class="text-blue-100 text-lg animate-on-scroll" style="animation-delay: 0.2s">Estudiante de Ingeniería en Sistemas Computacionales</p>
-                    </div>
-                    <div class="animate-on-scroll" style="animation-delay: 0.4s">
-                        <div class="flex flex-col space-y-3">
-                            <div class="flex items-center">
-                                <i class="fas fa-phone mr-3 text-blue-200 contact-icon"></i>
-                                <span>809-274-0663 | 829-933-2740</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-envelope mr-3 text-blue-200 contact-icon"></i>
-                                <span>juanmarte3a@gmail.com</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-map-marker-alt mr-3 text-blue-200 contact-icon"></i>
-                                <span>Santo Domingo Oeste, R.D.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="print-btn" onclick="window.print()">
+        <i class="fas fa-print"></i>
+    </div>
+    
+    <div class="cv-container">
+        <!-- Encabezado -->
+        <header class="header glass-card animate-on-scroll" id="header">
+            <div class="profile-image pulse">
+                <i class="fas fa-user"></i>
             </div>
-            
-            <!-- Elemento decorativo flotante -->
-            <div class="absolute bottom-0 right-0 opacity-10 floating" style="animation-delay: 1s">
-                <i class="fas fa-code text-8xl"></i>
+            <h1 class="name">JUAN FCO. MARTE MALDONADO</h1>
+            <p class="title">Estudiante de Ingeniería en Sistemas Computacionales</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>809-274-0663 | 829-933-2740</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>juanmarte3a@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Santo Domingo Oeste, R.D.</span>
+                </div>
             </div>
         </header>
-
-        <div class="p-8">
-            <!-- Perfil Profesional -->
-            <section class="mb-10">
-                <h2 class="text-2xl font-semibold text-gray-800 section-title animate-on-scroll">PERFIL PROFESIONAL</h2>
-                <p class="text-gray-700 leading-relaxed animate-on-scroll" style="animation-delay: 0.2s">
-                    Profesional con experiencia en desarrollo de aplicaciones móviles multiplataforma con 
-                    <span class="font-medium text-blue-600">Xamarin Forms</span> y 
-                    <span class="font-medium text-blue-600">.NET MAUI</span>, 
-                    así como en desarrollo de sistemas 
-                    <span class="font-medium text-blue-600">ERP mediante el framework Odoo</span> con 
-                    <span class="font-medium text-blue-600">Python y XML</span>. 
-                    Comprometido con la calidad, la innovación y el trabajo colaborativo para alcanzar los objetivos organizacionales.
-                </p>
-            </section>
-
-            <!-- Experiencia Laboral -->
-            <section class="mb-10">
-                <h2 class="text-2xl font-semibold text-gray-800 section-title animate-on-scroll">EXPERIENCIA LABORAL</h2>
+        
+        <div class="main-content">
+            <!-- Barra lateral -->
+            <div class="sidebar">
+                <!-- Perfil Profesional -->
+                <section class="section glass-card animate-on-scroll" id="profile">
+                    <h2 class="section-title">
+                        <i class="fas fa-user-tie"></i>
+                        Perfil Profesional
+                    </h2>
+                    <p class="text-gray-300">
+                        Profesional con experiencia en desarrollo de aplicaciones móviles multiplataforma con 
+                        <span class="text-blue-400">Xamarin Forms</span> y 
+                        <span class="text-blue-400">.NET MAUI</span>, 
+                        así como en desarrollo de sistemas 
+                        <span class="text-blue-400">ERP mediante el framework Odoo</span> con 
+                        <span class="text-blue-400">Python y XML</span>. 
+                        Comprometido con la calidad, la innovación y el trabajo colaborativo para alcanzar los objetivos organizacionales.
+                    </p>
+                </section>
                 
-                <div class="space-y-6">
-                    <!-- Experiencia 1 -->
-                    <div class="experience-card pl-4 py-4 animate-on-scroll">
-                        <div class="flex flex-col md:flex-row md:justify-between">
-                            <h3 class="text-xl font-semibold text-gray-800">DESARROLLADOR XAMARIN FORMS / .NET MAUI</h3>
-                            <span class="text-blue-600 font-medium bg-blue-50 px-3 py-1 rounded-full">Mayo 2025 - Octubre 2025</span>
-                        </div>
-                        <p class="text-blue-700 font-medium mb-2">MDSOFT</p>
-                        <ul class="list-disc list-inside text-gray-700 space-y-1 mt-2">
-                            <li>Desarrollo de aplicaciones móviles multiplataforma utilizando Xamarin Forms y .NET MAUI</li>
-                            <li>Integración de APIs y optimización del rendimiento para Android e iOS</li>
-                        </ul>
+                <!-- Habilidades Técnicas -->
+                <section class="section glass-card animate-on-scroll" id="skills">
+                    <h2 class="section-title">
+                        <i class="fas fa-code"></i>
+                        Habilidades Técnicas
+                    </h2>
+                    <div class="skills-grid">
+                        <div class="skill-tag">C#</div>
+                        <div class="skill-tag">Python</div>
+                        <div class="skill-tag">SQL</div>
+                        <div class="skill-tag">.NET</div>
+                        <div class="skill-tag">Xamarin Forms</div>
+                        <div class="skill-tag">.NET MAUI</div>
+                        <div class="skill-tag">Odoo</div>
+                        <div class="skill-tag">HTML5/CSS3</div>
+                        <div class="skill-tag">SQL Server</div>
+                        <div class="skill-tag">Laravel</div>
                     </div>
-                    
-                    <!-- Experiencia 2 -->
-                    <div class="experience-card pl-4 py-4 animate-on-scroll" style="animation-delay: 0.2s">
-                        <div class="flex flex-col md:flex-row md:justify-between">
-                            <h3 class="text-xl font-semibold text-gray-800">DESARROLLADOR ODOO / PYTHON</h3>
-                            <span class="text-blue-600 font-medium bg-blue-50 px-3 py-1 rounded-full">2024 - 2025</span>
-                        </div>
-                        <p class="text-blue-700 font-medium mb-2">J&J Import Export</p>
-                        <ul class="list-disc list-inside text-gray-700 space-y-1 mt-2">
-                            <li>Desarrollo de módulos personalizados en Odoo empleando Python y XML</li>
-                            <li>Automatización de procesos administrativos, control de inventario y mantenimiento de sistemas ERP</li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Experiencia 3 - FECHA ACTUALIZADA -->
-                    <div class="experience-card pl-4 py-4 animate-on-scroll" style="animation-delay: 0.4s">
-                        <div class="flex flex-col md:flex-row md:justify-between">
-                            <h3 class="text-xl font-semibold text-gray-800">PROGRAMADOR JUNIOR</h3>
-                            <span class="text-blue-600 font-medium bg-blue-50 px-3 py-1 rounded-full">Septiembre 2023 - 14 Septiembre 2024</span>
-                        </div>
-                        <p class="text-blue-700 font-medium mb-2">ALDERECA</p>
-                        <p class="text-gray-600">SQL Server / SAP-B1 / HanaStudio / Crystal Report / PHP (Laravel)</p>
-                    </div>
-                    
-                    <!-- Experiencia 4 -->
-                    <div class="experience-card pl-4 py-4 animate-on-scroll" style="animation-delay: 0.6s">
-                        <div class="flex flex-col md:flex-row md:justify-between">
-                            <h3 class="text-xl font-semibold text-gray-800">PROGRAMADOR (SQL SERVER / C#)</h3>
-                            <span class="text-blue-600 font-medium bg-blue-50 px-3 py-1 rounded-full">Julio 2022 - Septiembre 2023</span>
-                        </div>
-                        <p class="text-blue-700 font-medium mb-2">Super Fresh Market (CYNGUSVILLE)</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Formación Académica -->
-            <section class="mb-10">
-                <h2 class="text-2xl font-semibold text-gray-800 section-title animate-on-scroll">FORMACIÓN ACADÉMICA</h2>
+                </section>
                 
-                <div class="space-y-4">
-                    <div class="animate-on-scroll">
-                        <h3 class="font-semibold text-gray-800 text-lg">Ingeniería en Sistemas Computacionales (9no Cuatrimestre)</h3>
-                        <p class="text-blue-700">Universidad Acción Pro Educación y Cultura (UNAPEC)</p>
+                <!-- Formación Académica -->
+                <section class="section glass-card animate-on-scroll" id="education">
+                    <h2 class="section-title">
+                        <i class="fas fa-graduation-cap"></i>
+                        Formación Académica
+                    </h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">En curso</div>
+                            <div class="timeline-title">Ingeniería en Sistemas Computacionales</div>
+                            <div class="timeline-subtitle">Universidad UNAPEC</div>
+                            <div class="timeline-description">9no Cuatrimestre</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2022</div>
+                            <div class="timeline-title">Técnico Avanzado en Aplicaciones Web</div>
+                            <div class="timeline-subtitle">INFOTEP</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2020</div>
+                            <div class="timeline-title">Bachiller Técnico en Informática</div>
+                            <div class="timeline-subtitle">Instituto Politécnico Padre Bartolomé Vegh</div>
+                        </div>
                     </div>
-                    
-                    <div class="animate-on-scroll" style="animation-delay: 0.2s">
-                        <h3 class="font-semibold text-gray-800 text-lg">Técnico Avanzado en Aplicaciones Web</h3>
-                        <p class="text-blue-700">INFOTEP</p>
+                </section>
+            </div>
+            
+            <!-- Contenido principal -->
+            <div class="content">
+                <!-- Experiencia Laboral -->
+                <section class="section glass-card animate-on-scroll" id="experience">
+                    <h2 class="section-title">
+                        <i class="fas fa-briefcase"></i>
+                        Experiencia Laboral
+                    </h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Mayo 2025 - Octubre 2025</div>
+                            <div class="timeline-title">DESARROLLADOR XAMARIN FORMS / .NET MAUI</div>
+                            <div class="timeline-subtitle">MDSOFT</div>
+                            <div class="timeline-description">
+                                <ul class="list-disc list-inside mt-2 space-y-1">
+                                    <li>Desarrollo de aplicaciones móviles multiplataforma utilizando Xamarin Forms y .NET MAUI</li>
+                                    <li>Integración de APIs y optimización del rendimiento para Android e iOS</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2024 - 2025</div>
+                            <div class="timeline-title">DESARROLLADOR ODOO / PYTHON</div>
+                            <div class="timeline-subtitle">J&J Import Export</div>
+                            <div class="timeline-description">
+                                <ul class="list-disc list-inside mt-2 space-y-1">
+                                    <li>Desarrollo de módulos personalizados en Odoo empleando Python y XML</li>
+                                    <li>Automatización de procesos administrativos, control de inventario y mantenimiento de sistemas ERP</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Sept 2023 - 14 Sept 2024</div>
+                            <div class="timeline-title">PROGRAMADOR JUNIOR</div>
+                            <div class="timeline-subtitle">ALDERECA</div>
+                            <div class="timeline-description">
+                                Tecnologías: SQL Server, SAP-B1, HanaStudio, Crystal Report, PHP (Laravel)
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Jul 2022 - Sept 2023</div>
+                            <div class="timeline-title">PROGRAMADOR (SQL SERVER / C#)</div>
+                            <div class="timeline-subtitle">Super Fresh Market (CYNGUSVILLE)</div>
+                        </div>
                     </div>
-                    
-                    <div class="animate-on-scroll" style="animation-delay: 0.4s">
-                        <h3 class="font-semibold text-gray-800 text-lg">Bachiller Técnico en Informática</h3>
-                        <p class="text-blue-700">Instituto Politécnico Padre Bartolomé Vegh</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Habilidades Técnicas -->
-            <section class="mb-10">
-                <h2 class="text-2xl font-semibold text-gray-800 section-title animate-on-scroll">HABILIDADES TÉCNICAS</h2>
+                </section>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-gray-50 p-5 rounded-xl animate-on-scroll">
-                        <h3 class="font-semibold text-blue-700 mb-3 text-lg flex items-center">
-                            <i class="fas fa-code mr-2"></i> Lenguajes de Programación
-                        </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-tag bg-blue-100 text-blue-800 px-3 py-2 rounded-full font-medium">C#</span>
-                            <span class="skill-tag bg-blue-100 text-blue-800 px-3 py-2 rounded-full font-medium">Python</span>
-                            <span class="skill-tag bg-blue-100 text-blue-800 px-3 py-2 rounded-full font-medium">SQL</span>
-                            <span class="skill-tag bg-blue-100 text-blue-800 px-3 py-2 rounded-full font-medium">C++</span>
-                            <span class="skill-tag bg-blue-100 text-blue-800 px-3 py-2 rounded-full font-medium">HTML5</span>
-                            <span class="skill-tag bg-blue-100 text-blue-800 px-3 py-2 rounded-full font-medium">CSS3</span>
-                            <span class="skill-tag bg-blue-100 text-blue-800 px-3 py-2 rounded-full font-medium">XML</span>
+                <!-- Referencias -->
+                <section class="section glass-card animate-on-scroll" id="references">
+                    <h2 class="section-title">
+                        <i class="fas fa-users"></i>
+                        Referencias
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 bg-slate-800 rounded-lg">
+                            <h3 class="font-semibold text-white">Norberto Delgado</h3>
+                            <p class="text-gray-400">Gerente General, Servi Solutions ND</p>
+                            <div class="flex items-center mt-2 text-blue-400">
+                                <i class="fas fa-phone mr-2"></i>
+                                <span>829-830-9723</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-slate-800 rounded-lg">
+                            <h3 class="font-semibold text-white">Domingo García</h3>
+                            <p class="text-gray-400">Encargado Soporte Técnico, Consejo Nacional de Drogas</p>
+                            <div class="flex items-center mt-2 text-blue-400">
+                                <i class="fas fa-phone mr-2"></i>
+                                <span>809-939-0247</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-slate-800 rounded-lg">
+                            <h3 class="font-semibold text-white">Carolin Benoit Pérez</h3>
+                            <p class="text-gray-400">Subgerente de Archivo, Banco Caribe</p>
+                            <div class="flex items-center mt-2 text-blue-400">
+                                <i class="fas fa-phone mr-2"></i>
+                                <span>809-702-1728</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-slate-800 rounded-lg">
+                            <h3 class="font-semibold text-white">José de León</h3>
+                            <p class="text-gray-400">Gerente de Tecnología, Super Fresh Market</p>
+                            <div class="flex items-center mt-2 text-blue-400">
+                                <i class="fas fa-phone mr-2"></i>
+                                <span>829-391-3680</span>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-slate-800 rounded-lg md:col-span-2">
+                            <h3 class="font-semibold text-white">Amber Sepúlveda</h3>
+                            <p class="text-gray-400">Supervisora de Desarrollo, MDSOFT</p>
+                            <div class="flex items-center mt-2 text-blue-400">
+                                <i class="fas fa-phone mr-2"></i>
+                                <span>809-885-2991</span>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="bg-gray-50 p-5 rounded-xl animate-on-scroll" style="animation-delay: 0.2s">
-                        <h3 class="font-semibold text-green-700 mb-3 text-lg flex items-center">
-                            <i class="fas fa-cubes mr-2"></i> Frameworks & Plataformas
-                        </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-tag bg-green-100 text-green-800 px-3 py-2 rounded-full font-medium">.NET</span>
-                            <span class="skill-tag bg-green-100 text-green-800 px-3 py-2 rounded-full font-medium">Xamarin Forms</span>
-                            <span class="skill-tag bg-green-100 text-green-800 px-3 py-2 rounded-full font-medium">.NET MAUI</span>
-                            <span class="skill-tag bg-green-100 text-green-800 px-3 py-2 rounded-full font-medium">Odoo</span>
-                            <span class="skill-tag bg-green-100 text-green-800 px-3 py-2 rounded-full font-medium">Laravel</span>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-gray-50 p-5 rounded-xl animate-on-scroll" style="animation-delay: 0.4s">
-                        <h3 class="font-semibold text-purple-700 mb-3 text-lg flex items-center">
-                            <i class="fas fa-database mr-2"></i> Bases de Datos
-                        </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-tag bg-purple-100 text-purple-800 px-3 py-2 rounded-full font-medium">SQL Server</span>
-                            <span class="skill-tag bg-purple-100 text-purple-800 px-3 py-2 rounded-full font-medium">HanaStudio</span>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-gray-50 p-5 rounded-xl animate-on-scroll" style="animation-delay: 0.6s">
-                        <h3 class="font-semibold text-yellow-700 mb-3 text-lg flex items-center">
-                            <i class="fas fa-tools mr-2"></i> Herramientas
-                        </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-tag bg-yellow-100 text-yellow-800 px-3 py-2 rounded-full font-medium">Crystal Report</span>
-                            <span class="skill-tag bg-yellow-100 text-yellow-800 px-3 py-2 rounded-full font-medium">SAP Business One</span>
-                            <span class="skill-tag bg-yellow-100 text-yellow-800 px-3 py-2 rounded-full font-medium">Excel Avanzado</span>
-                            <span class="skill-tag bg-yellow-100 text-yellow-800 px-3 py-2 rounded-full font-medium">FIGS / ICG / ANITA</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Referencias -->
-            <section>
-                <h2 class="text-2xl font-semibold text-gray-800 section-title animate-on-scroll">REFERENCIAS</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="reference-card border border-gray-200 rounded-xl p-5 bg-white animate-on-scroll">
-                        <h3 class="font-semibold text-gray-800 text-lg">Norberto Delgado</h3>
-                        <p class="text-gray-600">Gerente General, Servi Solutions ND</p>
-                        <div class="flex items-center mt-2 text-blue-600">
-                            <i class="fas fa-phone mr-2"></i>
-                            <span>829-830-9723</span>
-                        </div>
-                    </div>
-                    
-                    <div class="reference-card border border-gray-200 rounded-xl p-5 bg-white animate-on-scroll" style="animation-delay: 0.2s">
-                        <h3 class="font-semibold text-gray-800 text-lg">Domingo García</h3>
-                        <p class="text-gray-600">Encargado Soporte Técnico, Consejo Nacional de Drogas</p>
-                        <div class="flex items-center mt-2 text-blue-600">
-                            <i class="fas fa-phone mr-2"></i>
-                            <span>809-939-0247</span>
-                        </div>
-                    </div>
-                    
-                    <div class="reference-card border border-gray-200 rounded-xl p-5 bg-white animate-on-scroll" style="animation-delay: 0.4s">
-                        <h3 class="font-semibold text-gray-800 text-lg">Carolin Benoit Pérez</h3>
-                        <p class="text-gray-600">Subgerente de Archivo, Banco Caribe</p>
-                        <div class="flex items-center mt-2 text-blue-600">
-                            <i class="fas fa-phone mr-2"></i>
-                            <span>809-702-1728</span>
-                        </div>
-                    </div>
-                    
-                    <div class="reference-card border border-gray-200 rounded-xl p-5 bg-white animate-on-scroll" style="animation-delay: 0.6s">
-                        <h3 class="font-semibold text-gray-800 text-lg">José de León</h3>
-                        <p class="text-gray-600">Gerente de Tecnología, Super Fresh Market</p>
-                        <div class="flex items-center mt-2 text-blue-600">
-                            <i class="fas fa-phone mr-2"></i>
-                            <span>829-391-3680</span>
-                        </div>
-                    </div>
-                    
-                    <div class="reference-card border border-gray-200 rounded-xl p-5 bg-white md:col-span-2 animate-on-scroll" style="animation-delay: 0.8s">
-                        <h3 class="font-semibold text-gray-800 text-lg">Amber Sepúlveda</h3>
-                        <p class="text-gray-600">Supervisora de Desarrollo, MDSOFT</p>
-                        <div class="flex items-center mt-2 text-blue-600">
-                            <i class="fas fa-phone mr-2"></i>
-                            <span>809-885-2991</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     </div>
 
     <script>
+        // Crear partículas de fondo
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Tamaño y posición aleatorios
+                const size = Math.random() * 5 + 2;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 20;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                // Animación de movimiento
+                particle.style.animation = `float ${Math.random() * 20 + 10}s infinite linear`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
         // Animación al hacer scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+        function handleScrollAnimation() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
             
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -425,9 +684,66 @@
                 });
             }, { threshold: 0.1 });
             
-            animatedElements.forEach(element => {
+            elements.forEach(element => {
                 observer.observe(element);
             });
+        }
+        
+        // Navegación por puntos
+        function setupNavigation() {
+            const dots = document.querySelectorAll('.nav-dot');
+            const sections = document.querySelectorAll('section, header');
+            
+            // Actualizar punto activo al hacer scroll
+            window.addEventListener('scroll', () => {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (scrollY >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                dots.forEach(dot => {
+                    dot.classList.remove('active');
+                    if (dot.getAttribute('data-section') === current) {
+                        dot.classList.add('active');
+                    }
+                });
+            });
+            
+            // Hacer scroll al hacer clic en un punto
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const targetId = dot.getAttribute('data-section');
+                    const targetSection = document.getElementById(targetId);
+                    
+                    window.scrollTo({
+                        top: targetSection.offsetTop,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        }
+        
+        // Inicializar todo cuando se carga la página
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            handleScrollAnimation();
+            setupNavigation();
+            
+            // Añadir animación flotante a las partículas
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes float {
+                    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                    100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
         });
     </script>
 </body>
