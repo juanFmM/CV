@@ -300,6 +300,62 @@
             transform: translateY(-3px);
         }
         
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .portfolio-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            height: 250px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .portfolio-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .portfolio-card p {
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+        }
+        
+        .portfolio-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
         .floating-nav {
             position: fixed;
             top: 50%;
@@ -413,6 +469,10 @@
             .skills-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media print {
@@ -444,6 +504,7 @@
         <div class="nav-dot" data-tooltip="Experiencia" data-section="experience"></div>
         <div class="nav-dot" data-tooltip="Habilidades" data-section="skills"></div>
         <div class="nav-dot" data-tooltip="Formación" data-section="education"></div>
+        <div class="nav-dot" data-tooltip="Portafolio" data-section="portfolio"></div>
         <div class="nav-dot" data-tooltip="Referencias" data-section="references"></div>
     </div>
     
@@ -586,6 +647,32 @@
                             <div class="timeline-date">Jul 2022 - Sept 2023</div>
                             <div class="timeline-title">PROGRAMADOR (SQL SERVER / C#)</div>
                             <div class="timeline-subtitle">Super Fresh Market (CYNGUSVILLE)</div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Portafolio -->
+                <section class="section glass-card animate-on-scroll" id="portfolio">
+                    <h2 class="section-title">
+                        <i class="fas fa-briefcase"></i>
+                        Portafolio
+                    </h2>
+                    <div class="portfolio-grid">
+                        <div class="portfolio-card">
+                            <h3>Portafolio Shopify</h3>
+                            <p>Explora mi portafolio de proyectos, incluyendo desarrollos en Shopify, aplicaciones móviles y más.</p>
+                            <a href="https://juanfmm.github.io/Portafolio-Shopify/" target="_blank" class="portfolio-btn">
+                                Ver Portafolio
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                        <div class="portfolio-card">
+                            <h3>Proyecto Casluing</h3>
+                            <p>Proyecto terminado: aplicación web desarrollada con tecnologías modernas y funcionalidades completas.</p>
+                            <a href="https://casluing.netlify.app/" target="_blank" class="portfolio-btn">
+                                Ver Proyecto
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
                         </div>
                     </div>
                 </section>
